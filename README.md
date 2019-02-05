@@ -1,1 +1,1 @@
-# swagger_tamplate
+# Skeleton project for Swagger
