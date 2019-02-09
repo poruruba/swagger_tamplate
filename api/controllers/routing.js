@@ -118,7 +118,7 @@ function routing(req, res) {
             });
         }else{
             console.log('return called');
-            return_none(res);
+//            return_none(res);
         }
     }catch(err){
         console.log('error throwed: ' + err);
