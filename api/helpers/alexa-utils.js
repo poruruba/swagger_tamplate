@@ -4,7 +4,7 @@ var AWS = require('aws-sdk');
 AWS.config.update({region: 'ap-northeast-1'});
 
 //const Adapter = require('ask-sdk-dynamodb-persistence-adapter');
-//const config = {tableName: tableName, createTable: true};
+//const config = {tableName: 'AskPersistentAttributes', createTable: true};
 //var adapter = new Adapter.DynamoDbPersistenceAdapter(config);   
 
 class AlexaUtils{
