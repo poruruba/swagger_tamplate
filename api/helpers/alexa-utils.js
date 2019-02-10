@@ -3,14 +3,15 @@
 var AWS = require('aws-sdk');
 AWS.config.update({region: 'ap-northeast-1'});
 
-const Adapter = require('ask-sdk-dynamodb-persistence-adapter');
+//const Adapter = require('ask-sdk-dynamodb-persistence-adapter');
+//const config = {tableName: tableName, createTable: true};
+//var adapter = new Adapter.DynamoDbPersistenceAdapter(config);   
 
 class AlexaUtils{
-    constructor(alexa, tableName = 'AskPersistentAttributes'){
+    constructor(alexa, adapter){
         this.alexa = alexa;
         this.skillBuilder = alexa.SkillBuilders.custom();
-        const config = {tableName: tableName, createTable: true};
-        this.DynamoDBAdapter = new Adapter.DynamoDbPersistenceAdapter(config);        
+        this.DynamoDBAdapter = adapter;        
     }
 
     intent( matcher, handle ){
