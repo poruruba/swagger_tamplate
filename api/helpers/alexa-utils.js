@@ -57,10 +57,16 @@ class AlexaUtils{
     }
 
     lambda(){
-        return this.skillBuilder
-        .addErrorHandlers(ErrorHandler)
-        .withPersistenceAdapter(this.DynamoDBAdapter)
-        .lambda();
+        if( this.DynamoDBAdapter ){
+            return this.skillBuilder
+            .addErrorHandlers(ErrorHandler)
+            .withPersistenceAdapter(this.DynamoDBAdapter)
+            .lambda();
+        }else{
+            return this.skillBuilder
+            .addErrorHandlers(ErrorHandler)
+            .lambda();
+        }
     }
 };
 
