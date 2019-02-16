@@ -60,14 +60,6 @@ config.swaggerSecurityHandlers = {
             claims : decoded
           }
         };
-        var claims = {
-          claims : decode,
-          issuer: decoded.iss,
-          id: decoded,sub,
-          email: decoded.email
-        };
-        var buffer = new Buffer(JSON.stringify(claims));
-        req.headers['x-endpoint-api-userinfo'] = buffer.toString('base64');
       }else{
         cb(new Error("Authorization not defined") );
         return;
@@ -87,6 +79,14 @@ config.swaggerSecurityHandlers = {
             claims : decoded
           }
         };
+        var claims = {
+          claims : decode,
+          issuer: decoded.iss,
+          id: decoded,sub,
+          email: decoded.email
+        };
+        var buffer = new Buffer(JSON.stringify(claims));
+        req.headers['x-endpoint-api-userinfo'] = buffer.toString('base64');
       }else{
         cb(new Error("Authorization not defined") );
         return;
