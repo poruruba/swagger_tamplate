@@ -82,7 +82,7 @@ config.swaggerSecurityHandlers = {
         var claims = {
           claims : decode,
           issuer: decoded.iss,
-          id: decoded,sub,
+          id: decoded.sub,
           email: decoded.email
         };
         var buffer = new Buffer(JSON.stringify(claims));
