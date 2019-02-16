@@ -18,6 +18,6 @@ env: flex
 endpoints_api_service:
   # The following values are to be replaced by information from the output of
   # 'gcloud endpoints services deploy openapi-appengine.yaml' command.
-  name: yƒvƒƒWƒFƒNƒgIDz.appspot.com
+  name: ã€ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆIDã€‘.appspot.com
   rollout_strategy: managed
 # [END configuration]
