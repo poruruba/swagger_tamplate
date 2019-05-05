@@ -5,7 +5,7 @@ class Response{
         if( context )
             this.set_body(context);
         else
-            this.body = "";
+            this.body = "{}";
     }
 
     set_error(error){
