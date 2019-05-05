@@ -180,7 +180,7 @@ function return_response(res, ret){
         }else if( res.func_type == 'lambda'){
             res.json({ body: ret });
         }else{
-            if( ret.body )
+            if( ret.body || ret.body == '' )
                 res.send(ret.body);
             else
                 res.json({});
