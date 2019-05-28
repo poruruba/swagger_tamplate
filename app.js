@@ -133,7 +133,7 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
     var options = {
       key:  fs.readFileSync('./cert/server.key'),
       cert: fs.readFileSync('./cert/server.crt'),
-      ca: fs.readFileSync('./cert/JPRS_DVCA_G2_PEM.cer')
+  //    ca: fs.readFileSync('./cert/JPRS_DVCA_G2_PEM.cer')
   //    key: fs.readFileSync('./cert/oreore/private-key.pem'),
   //    cert: fs.readFileSync('./cert/oreore/certificate.pem')
     };
