@@ -55,13 +55,13 @@ function routing(req, res) {
             event = {
                 headers: req.headers,
                 body: JSON.stringify(req.body),
-                path: req.swagger.apiPath,
+                path: req.path,
                 httpMethod: req.method,
                 queryStringParameters: req.query,
+                stage: req.swagger.swaggerObject.basePath.replace( /^\/|\/$/g, ""),
+                Host: req.host,
                 requestContext: ( req.requestContext ) ? req.requestContext : {}
             };
-
-            event.Host = req.hostname;
 
             func = func_table[operationId];
             res.func_type = "normal";
