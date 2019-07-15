@@ -93,7 +93,8 @@ function routing(req, res) {
                 console.log('failed called');
                 return_error(res, error);
             },
-            original_req: req
+            original_req: req,
+            swagger: req.swagger
         };
 
         var task = func(event, context, (error, response) =>{
