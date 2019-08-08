@@ -59,7 +59,7 @@ function routing(req, res) {
                 httpMethod: req.method,
                 queryStringParameters: req.query,
                 stage: req.swagger.swaggerObject.basePath.replace( /^\/|\/$/g, ""),
-                Host: req.host,
+                Host: req.hostname,
                 requestContext: ( req.requestContext ) ? req.requestContext : {}
             };
 
