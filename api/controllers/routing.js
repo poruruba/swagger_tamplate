@@ -93,7 +93,7 @@ function routing(req, res) {
                 console.log('failed called');
                 return_error(res, error);
             },
-            original_req: req,
+            req: req,
             swagger: req.swagger
         };
 
