@@ -56,7 +56,7 @@ class LineUtils{
 
     lambda(){
         return async (event, context, callback) => {
-            console.log(context.original_req);
+            console.log(context.req);
             var body = JSON.parse(event.body);
 
             return Promise.all(body.events.map((event) =>{
