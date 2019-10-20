@@ -124,11 +124,11 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   swaggerExpress.register(app);
 
   app.all('*', function(req, res) {
-    if( req.originalUrl == '/swagger' )
-      return;
     console.log('Unknown Endpoint');
     console.log('\tmethod=' + req.method);
     console.log('\tendpoint=' + req.originalUrl);
+    if( req.swagger )
+      return;
     res.sendStatus(404);
   });
     
