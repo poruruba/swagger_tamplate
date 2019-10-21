@@ -60,6 +60,10 @@ class LineUtils{
             var body = JSON.parse(event.body);
 
             return Promise.all(body.events.map((event) =>{
+                if( (event.type == 'message') &&
+                     (event.replyToken === '00000000000000000000000000000000' || event.replyToken === 'ffffffffffffffffffffffffffffffff' ))
+                    return;
+                
                 var handler = this.map.get(event.type);
                 if( handler )
                     return handler(event, this.client);
