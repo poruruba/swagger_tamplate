@@ -142,7 +142,6 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   app.listen(port);
 
   var https = require('https');
-  var fs = require('fs');
   try{
     var options = {
       key:  fs.readFileSync('./cert/server.key'),
