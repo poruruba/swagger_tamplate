@@ -5,6 +5,11 @@ var express = require('express');
 var app = express();
 module.exports = app; // for testing
 
+var fs = require('fs');
+var stream = fs.createWriteStream('log.txt', { flags: 'a' });
+var morgan = require('morgan');
+app.use(morgan('tiny', { stream: stream }));
+
 app.use(express.static('public'));
 
 var cors = require('cors');
