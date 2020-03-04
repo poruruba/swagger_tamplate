@@ -7,7 +7,7 @@ module.exports = app; // for testing
 
 var fs = require('fs');
 var morgan = require('morgan');
-app.use(morgan('tiny', { stream: fs.createWriteStream(path.join(__dirname, 'access.log')), { flags: 'a' }) }));
+app.use(morgan('tiny', { stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' }) }));
 
 app.use(express.static('public'));
 
