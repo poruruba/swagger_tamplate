@@ -5,6 +5,7 @@ var express = require('express');
 var app = express();
 module.exports = app; // for testing
 
+var path = require('path');
 var fs = require('fs');
 var morgan = require('morgan');
 app.use(morgan('tiny', { stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' }) }));
