@@ -22,7 +22,7 @@ function routing(req, res) {
 //    console.log(req);
 
     var operationId = req.swagger.operation.operationId;
-    console.log('[' + operationId + ' calling]');
+    console.log('[' + req.path + ' calling]');
 
     try{
         var event;
