@@ -21,6 +21,7 @@
 
   <link rel="stylesheet" href="css/start.css">
   <script src="js/methods_utils.js"></script>
+  <script src="js/components_utils.js"></script>
   <script src="js/vue_utils.js"></script>
 
   <script src="dist/js/vconsole.min.js"></script>
@@ -31,18 +32,8 @@
     <div id="top" class="container">
         <h1>Template : Simple</h1>
 
-        <div class="modal fade" id="progress">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">{{progress_title}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <center><progress max="100" /></center>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <progress-dialog v-bind:title="progress_title"></progress-dialog>
     </div>
 
     <script src="js/start.js"></script>
