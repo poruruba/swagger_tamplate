@@ -5,7 +5,8 @@
 var vue_options = {
     el: "#top",
     data: {
-        progress_title: '',
+        progress_title: '', // for progress-dialog
+
     },
     computed: {
     },
@@ -17,6 +18,6 @@ var vue_options = {
         proc_load();
     }
 };
-vue_add_methods(vue_options, methods_utils);
-vue_add_components(vue_options, components_utils);
+vue_add_methods(vue_options, methods_bootstrap);
+vue_add_components(vue_options, components_bootstrap);
 var vue = new Vue( vue_options );
