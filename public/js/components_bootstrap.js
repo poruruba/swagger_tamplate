@@ -29,7 +29,7 @@ var components_bootstrap = {
   'collapse-panel': {
     props: ['id', 'collapse', 'title'],
     template: `
-      <div class="panel panel-primary">
+      <div class="panel">
         <div class="panel-heading">
           <div class="panel-title"><a data-toggle="collapse" v-bind:href="'#' + id">{{title}}</a></div>
         </div>
