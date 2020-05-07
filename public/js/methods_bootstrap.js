@@ -17,5 +17,8 @@ var methods_bootstrap = {
     },
     progress_close: function(){
         this.dialog_close('#progress');
+    },
+    toast_show: function(message, title, level = "info", option){
+        toastr[level](message, title, option);
     }
 };
