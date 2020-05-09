@@ -5,15 +5,15 @@ async function parse(parser, event) {
 
   if (body.files) {
     event.files = {};
-    for (var i = 0; i < event.files.length; i++) {
+    for (var i = 0; i < body.files.length; i++) {
       var file = {};
-      file.buffer = event.files[i].content;
-      file.encoding = event.files[i].encoding;
-      file.fieldname = event.files[i].fieldname;
-      file.mimetype = event.files[i].contentType;
-      file.originalname = event.files[i].filename;
-      file.size = event.files[i].content.length;
-      event.files[event.file.fieldname] = [file];
+      file.buffer = body.files[i].content;
+      file.encoding = body.files[i].encoding;
+      file.fieldname = body.files[i].fieldname;
+      file.mimetype = body.files[i].contentType;
+      file.originalname = body.files[i].filename;
+      file.size = body.files[i].content.length;
+      event.files[body.file.fieldname] = [file];
     }
   }
 
