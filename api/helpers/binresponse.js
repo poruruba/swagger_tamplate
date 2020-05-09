@@ -1,12 +1,17 @@
 class BinResponse{
     constructor(content_type, context){
         this.statusCode = 200;
-        this.headers = {'Access-Control-Allow-Origin' : '*', 'Content-Type': content_type };
+        this.headers = {'Access-Control-Allow-Origin' : '*', 'Cache-Control' : 'no-cache', 'Content-Type': content_type };
         this.isBase64Encoded = true;
         if( context )
             this.set_body(context);
         else
             this.body = "";
+    }
+
+    set_filename(fname){
+        this.headers['Content-Disposition'] = 'attachment; filename="' + fname + '"';
+        return this;
     }
 
     set_error(error){
