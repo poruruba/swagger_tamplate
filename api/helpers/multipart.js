@@ -13,7 +13,7 @@ async function parse(parser, event) {
       file.mimetype = body.files[i].contentType;
       file.originalname = body.files[i].filename;
       file.size = body.files[i].content.length;
-      event.files[body.file.fieldname] = [file];
+      event.files[file.fieldname] = [file];
     }
   }
 
