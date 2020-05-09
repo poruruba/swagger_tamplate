@@ -15,6 +15,7 @@ async function parse(parser, event) {
       file.size = body.files[i].content.length;
       event.files[file.fieldname] = [file];
     }
+    body.files = undefined;
   }
 
   return body;
