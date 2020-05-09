@@ -36,7 +36,8 @@ function routing(req, res) {
                 queryStringParameters: req.query,
                 stage: req.swagger.swaggerObject.basePath.replace( /^\/|\/$/g, ""),
                 Host: req.hostname,
-                requestContext: ( req.requestContext ) ? req.requestContext : {}
+                requestContext: ( req.requestContext ) ? req.requestContext : {},
+                files: req.files,
             };
 
             func = func_table[operationId];
