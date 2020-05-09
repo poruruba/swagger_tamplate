@@ -18,6 +18,5 @@ const lambda_table = {
 const express_table = {
 //  "test-express": require('./test-express').handler,
 };
-/* ここまで */
 
 module.exports = { func_table, alexa_table, lambda_table, express_table, binary_table };
