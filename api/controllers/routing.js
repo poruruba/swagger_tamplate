@@ -1,6 +1,6 @@
 'use strict';
 
-const { func_table, alexa_table, lambda_table, express_table, binary_table } = require('./functions.js');
+const { func_table, alexa_table, lambda_table, express_table } = require('./functions.js');
 
 var exports_list = {};
 for( var operationId in func_table ){
@@ -149,7 +149,7 @@ function return_response(res, ret){
     if (!res.get('Content-Type'))
         res.type('application/json');
 
-    if( binary_table.indexOf(res.get('Content-Type')) >= 0 ){
+    if( res.isBase64Encoded ){
         var bin = new Buffer(ret.body, 'base64')
         res.send(bin);
     }else{
