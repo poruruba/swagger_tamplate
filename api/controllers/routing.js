@@ -149,7 +149,7 @@ function return_response(res, ret){
     if (!res.get('Content-Type'))
         res.type('application/json');
 
-    if( res.isBase64Encoded ){
+    if( ret.isBase64Encoded ){
         var bin = new Buffer(ret.body, 'base64')
         res.send(bin);
     }else{
