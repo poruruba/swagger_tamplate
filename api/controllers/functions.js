@@ -19,4 +19,4 @@ const express_table = {
 //  "test-express": require('./test-express').handler,
 };
 
-module.exports = { func_table, alexa_table, lambda_table, express_table, binary_table };
+module.exports = { func_table, alexa_table, lambda_table, express_table };
