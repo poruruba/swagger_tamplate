@@ -20,9 +20,4 @@ const express_table = {
 };
 /* ここまで */
 
-/* 必要に応じて、バイナリレスポンスのContent-Typeを以下に追加する */
-const binary_table = [
-//  'application/octet-stream',
-];
-
 module.exports = { func_table, alexa_table, lambda_table, express_table, binary_table };
