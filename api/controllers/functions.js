@@ -4,8 +4,6 @@
 const func_table = {
 //  "test-func" : require('./test_func').handler,
 //  "test-dialogflow" : require('./test_dialogflow').fulfillment,
-"test-get" : require('./test-get').handler,
-"test-post" : require('./test-post').handler,
 };
 const alexa_table = {
 //  "test-alexa" : require('./test_alexa').handler,

@@ -1,9 +1,30 @@
 'use strict';
 
+const fs = require('fs');
+
 const { func_table, alexa_table, lambda_table, express_table } = require('./functions.js');
+
+var func_auto_table = [];
+
+const files = fs.readdirSync("api/controllers");
+for( var i = 0 ; i < files.length ; i++ ){
+    var stats_dir = fs.statSync("api/controllers/" + files[i]);
+    if( !stats_dir.isDirectory() )
+        continue;
+    try{
+        fs.statSync("api/controllers/" + files[i] + "/swagger.yaml" );
+    }catch(error){
+        continue;
+    }
+    func_auto_table[files[i]] = require('./' + files[i]).handler;
+    console.log('auto mouted: ' + files[i]);
+};
 
 var exports_list = {};
 for( var operationId in func_table ){
+    exports_list[operationId] = routing;
+}
+for( var operationId in func_auto_table ){
     exports_list[operationId] = routing;
 }
 for( var operationId in alexa_table ){
@@ -27,7 +48,7 @@ function routing(req, res) {
     try{
         var event;
         var func;
-        if( func_table.hasOwnProperty(operationId) ){
+        if( func_table.hasOwnProperty(operationId) || func_auto_table.hasOwnProperty(operationId) ){
             event = {
                 headers: req.headers,
                 body: JSON.stringify(req.body),
@@ -40,6 +61,9 @@ function routing(req, res) {
                 files: req.files,
             };
 
+            if( req.swagger.operation["x-automount"] )
+                func = func_auto_table[operationId];
+            else
             func = func_table[operationId];
             res.func_type = "normal";
         }else if( alexa_table.hasOwnProperty(operationId) ){
