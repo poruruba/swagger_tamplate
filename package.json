@@ -14,7 +14,8 @@
     "express-session": "^1.15.6",
     "jwt-decode": "^2.2.0",
     "morgan": "^1.9.1",
-    "swagger-express-mw": "^0.1.0"
+    "swagger-express-mw": "^0.1.0",
+    "yaml": "^1.10.0"
   },
   "devDependencies": {
     "should": "^7.1.0",
@@ -22,6 +23,8 @@
   },
   "scripts": {
     "start": "node app.js",
+    "automount" : "node automount.js mount",
+    "autoclean" : "node automount.js clean",
     "test": "swagger project test"
   }
 }
