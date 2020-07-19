@@ -18,6 +18,13 @@ class AlexaUtils{
         this.skillBuilder.addRequestHandlers(new BaseIntentHandler(matcher, handle));
     }
 
+    customReceived( handle ){
+        this.skillBuilder.addRequestHandlers(new BaseIntentHandler("CustomInterfaceController.EventsReceived", handle));
+    }
+    customExpired( handle ){
+        this.skillBuilder.addRequestHandlers(new BaseIntentHandler("CustomInterfaceController.Expired", handle));
+    }
+
     errorIntent( handle ){
         ErrorHandler.handle = handle;
     }
@@ -56,15 +63,24 @@ class AlexaUtils{
         return handlerInput.requestEnvelope.context.System.user.accessToken;
     }
 
+    getConnectedEndpoints(handlerInput){
+        return handlerInput.serviceClientFactory.getEndpointEnumerationServiceClient().getEndpoints()
+        .then(response =>{
+            return response.endpoints;
+        });
+    }
+    
     lambda(){
         if( this.DynamoDBAdapter ){
             return this.skillBuilder
             .addErrorHandlers(ErrorHandler)
             .withPersistenceAdapter(this.DynamoDBAdapter)
+            .withApiClient(new this.alexa.DefaultApiClient())
             .lambda();
         }else{
             return this.skillBuilder
             .addErrorHandlers(ErrorHandler)
+            .withApiClient(new this.alexa.DefaultApiClient())
             .lambda();
         }
     }
@@ -93,6 +109,10 @@ class BaseIntentHandler{
         }else if( this.matcher == 'NavigateHomeIntent'){
             return handlerInput.requestEnvelope.request.type === 'IntentRequest'
                 && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.NavigateHomeIntent';
+        }else if( this.matcher == 'CustomInterfaceController.EventsReceived' ){
+            return handlerInput.requestEnvelope.request.type === 'CustomInterfaceController.EventsReceived';
+        }else if( this.matcher == 'CustomInterfaceController.Expired' ){
+            return handlerInput.requestEnvelope.request.type === 'CustomInterfaceController.Expired';
         }else{
             return handlerInput.requestEnvelope.request.type === 'IntentRequest'
                 && handlerInput.requestEnvelope.request.intent.name === this.matcher;
@@ -101,7 +121,12 @@ class BaseIntentHandler{
 
     async handle(handlerInput) {
         console.log('handle: ' + this.matcher + ' called');
-        return await this.myhandle(handlerInput);
+        try{
+            return await this.myhandle(handlerInput);
+        }catch(error){
+            console.error(error);
+            throw error;
+        }
     }
 }
   
