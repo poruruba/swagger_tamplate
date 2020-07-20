@@ -70,6 +70,47 @@ class AlexaUtils{
         });
     }
     
+    buildCustomDirective(endpointId, namespace, name, payload) {
+        return {
+            type: 'CustomInterfaceController.SendDirective',
+            header: {
+                name: name,
+                namespace: namespace
+            },
+            endpoint: {
+                endpointId: endpointId
+            },
+            payload: payload
+        };
+    }
+    
+    buildStartEventHandlerDirective(token, namespace, name, expirationPayload, durationMs) {
+        return {
+            type: "CustomInterfaceController.StartEventHandler",
+            token: token,
+            eventFilter: {
+                filterExpression: {
+                    'and': [
+                        { '==': [{ 'var': 'header.namespace' }, namespace] },
+                        { '==': [{ 'var': 'header.name' }, name] }
+                    ]
+                },
+                filterMatchAction: 'SEND_AND_TERMINATE'
+            },
+            expiration: {
+                durationInMilliseconds: durationMs,
+                expirationPayload: expirationPayload
+            }
+        };
+    }
+    
+    buildStopEventHandlerDirective(token) {
+        return {
+            type: "CustomInterfaceController.StopEventHandler",
+            token: token
+        };
+    }
+
     lambda(){
         if( this.DynamoDBAdapter ){
             return this.skillBuilder
@@ -121,6 +162,7 @@ class BaseIntentHandler{
 
     async handle(handlerInput) {
         console.log('handle: ' + this.matcher + ' called');
+        console.log(handlerInput);
         try{
             return await this.myhandle(handlerInput);
         }catch(error){
@@ -137,7 +179,8 @@ const ErrorHandler = {
 
     handle(handlerInput, error) {
         console.log(`Error handled: ${error.message}`);
-        console.log(`type: ${handlerInput.requestEnvelope.request.type}, name: ${handlerInput.requestEnvelope.request.intent.name}`);
+        console.log(handlerInput);
+        console.log(`type: ${handlerInput.requestEnvelope.request.type}`);
         return handlerInput.responseBuilder
             .speak('よく聞き取れませんでした。')
             .reprompt('もう一度お願いします。')
