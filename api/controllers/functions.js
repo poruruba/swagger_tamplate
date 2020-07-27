@@ -8,6 +8,7 @@ const func_table = {
 const alexa_table = {
 //  "test-alexa" : require('./test_alexa').handler,
 //  "test-clova": require('./test-clova').handler,
+//  "test-s3" : require('./test_s3').handler,
 };
 const lambda_table = {
 //  "test-lambda" : require('./test-lambda').handler,
